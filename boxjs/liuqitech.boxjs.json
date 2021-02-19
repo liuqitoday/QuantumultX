@@ -14,12 +14,12 @@
             "settings": [
               {
                 "id": "bbb_ck",
-                "name": "BBB_ck",
+                "name": "bbb_ck",
                 "val": "",
                 "type": "textarea",
                 "autoGrow": true,
                 "rows": 8,
-                "desc": "ck (JSON 数组格式)"
+                "desc": "ck (JSON 格式)"
               }
             ],
             "keys": ["bbb_ck"],
