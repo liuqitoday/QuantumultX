@@ -9,9 +9,7 @@
             "id": "BBB",
             "name": "步步宝",
             "descs_html": [
-              "<h4 align=\"center\">脚本作者@adwktt<a href=\"https://raw.githubusercontent.com/adwktt/adwktt/master/BBB.js\">查看脚本</a></h4>",
-              "<br />",
-              "<p align=\"center\"><iframe src=\"https://www.youtube.com/embed/6vMz1LKF1-8\" width=\"100%\" height=\"100%\"></iframe></p>"
+              "<h4 align=\"center\">脚本作者@adwktt<a href=\"https://raw.githubusercontent.com/adwktt/adwktt/master/BBB.js\">查看脚本</a></h4>"
             ],
             "keys": ["bbb_ck"],
             "author": "@adwktt",
