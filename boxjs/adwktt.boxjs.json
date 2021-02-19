@@ -1,0 +1,18 @@
+{
+    "id": "adwktt.app.sub",
+    "name": "adwktt 应用订阅",
+    "author": "@adwktt",
+    "icon": "",
+    "repo": "https://github.com/adwktt/adwktt",
+    "apps": [
+        {
+            "id": "BBB",
+            "name": "步步宝",
+            "keys": ["bbb_ck"],
+            "author": "@adwktt",
+            "repo": "https://raw.githubusercontent.com/adwktt/adwktt/master/BBB.js",
+            "icons": [],
+            "script": "https://raw.githubusercontent.com/adwktt/adwktt/master/BBB.js"
+        }
+    ]
+}
