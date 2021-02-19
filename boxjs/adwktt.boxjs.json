@@ -1,9 +1,9 @@
 {
-    "id": "adwktt.app.sub",
-    "name": "adwktt 应用订阅",
-    "author": "@adwktt",
+    "id": "freddy.app.sub",
+    "name": "freddy 应用订阅",
+    "author": "@freddy",
     "icon": "",
-    "repo": "https://github.com/adwktt/adwktt",
+    "repo": "https://github.com/liuqitoday/QuantumultX",
     "apps": [
         {
             "id": "BBB",
