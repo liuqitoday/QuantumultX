@@ -35,7 +35,7 @@ jobs:
       - name: '运行 【抖音火山版】'
         if: env.HSHEADER
         run: |
-          node task/huoshan.js
+          node huoshan.js
         env:
           HSHEADER: ${{ secrets. HSHEADER }}
           HSBODY: ${{ secrets. HSBODY }}
