@@ -39,6 +39,31 @@
             "repo": "https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/ttwk/ttwk.js",
             "icons": ["https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/image/ttwk.png", "https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/image/ttwk.png"],
             "script": "https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/ttwk/ttwk.js"
+        },
+        {
+            "id": "dkdsp",
+            "name": "多看点视频",
+            "descs_html": [
+              "<h4 align=\"center\">脚本作者@yangtingxiao<a href=\"https://raw.githubusercontent.com/age174/-/main/dkdsp.js\">查看脚本</a></h4>",
+              "</br>",
+              "<h5>脚本说明：需要约50个body，每日跑2-3次即可</h5>"
+            ],
+            "settings": [
+              {
+                "id": "dkdvd_body",
+                "name": "多看点视频body",
+                "val": "",
+                "type": "textarea",
+                "autoGrow": true,
+                "rows": 8,
+                "desc": "视频body"
+              }
+            ],
+            "keys": ["dkdvd_body", "dkdbody", "dkdhd"],
+            "author": "@肥皂",
+            "repo": "https://raw.githubusercontent.com/age174/-/main/dkdsp.js",
+            "icons": ["https://raw.githubusercontent.com/shoujiqiyuan/PokemonGOforQuanX/master/IconSet/X003.png", "https://raw.githubusercontent.com/shoujiqiyuan/PokemonGOforQuanX/master/IconSet/X003.png"],
+            "script": "https://raw.githubusercontent.com/age174/-/main/dkdsp.js"
         }
     ]
 }
