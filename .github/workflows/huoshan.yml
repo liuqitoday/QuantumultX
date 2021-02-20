@@ -37,9 +37,9 @@ jobs:
         run: |
           node huoshan.js
         env:
-          HSHEADER: ${{ secrets. HSHEADER }}
-          HSBODY: ${{ secrets. HSBODY }}
-          HSURL: ${{ secrets. HSURL }}
-          PLAYBODY: ${{ secrets. PLAYBODY }}
-          PLAYHEADER: ${{ secrets. PLAYHEADER }}
-          PLAYURL: ${{ secrets. PLAYURL }}
+          HSHEADER: ${{ secrets.HSHEADER }}
+          HSBODY: ${{ secrets.HSBODY }}
+          HSURL: ${{ secrets.HSURL }}
+          PLAYBODY: ${{ secrets.PLAYBODY }}
+          PLAYHEADER: ${{ secrets.PLAYHEADER }}
+          PLAYURL: ${{ secrets.PLAYURL }}
