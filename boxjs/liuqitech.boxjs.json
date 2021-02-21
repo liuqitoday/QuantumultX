@@ -73,7 +73,7 @@
             ],
             "settings": [
               {
-                "id": "YOUTH_READ",
+                "id": "zqgetbody_body",
                 "name": "中青阅读body",
                 "val": "",
                 "type": "textarea",
@@ -82,7 +82,7 @@
                 "desc": "多个请求体时用'&'号或者换行隔开"
               }
             ],
-            "keys": ["YOUTH_READ"],
+            "keys": ["zqgetbody_body"],
             "author": "@CenBoMin",
             "repo": "https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/Youth_AutoRead.js",
             "icons": ["https://raw.githubusercontent.com/Orz-3/task/master/youth.png", "https://raw.githubusercontent.com/Orz-3/task/master/youth.png"],
