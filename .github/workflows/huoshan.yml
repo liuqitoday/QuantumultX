@@ -22,12 +22,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        run: |
+          git clone https://github.com/liuqitoday/QuantumultX.git ~/yangmao
 
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
 
+      - name: npm install
+        run: |
+          cd ~/yangmao
+          npm install
+
       - name: '运行 【抖音火山极速版】'
         run: |
-          node ./task/huoshan.js 
+          node ~/yangmao/task/huoshan.js 
