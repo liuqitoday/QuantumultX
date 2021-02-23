@@ -17,6 +17,13 @@ jobs:
         HSURL: ${{ secrets.HSURL }}		
         HSHEADER: ${{ secrets.HSHEADER }}
         HSBODY: ${{ secrets.HSBODY }}		
+        PUSH_KEY: ${{ secrets.PUSH_KEY }}
+        BARK_PUSH: ${{ secrets.BARK_PUSH }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+         BARK_SOUND: ${{ secrets.BARK_SOUND }}
+        DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+        DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
         
     steps:
       - name: Checkout
@@ -27,24 +34,12 @@ jobs:
         with:
           node-version: 12.x
       - name: npm install
+        if: env.HSHEADER
         run: |
           cd ~/QuantumultX/task
           npm install
       - name: '运行 【抖音火山版】'
+        if: env.HSHEADER
         run: |
           cd ~/QuantumultX/task
-          node huoshan.js
-        env:
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
-          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-          PLAYURL: ${{ secrets.PLAYURL }}
-          PLAYHEADER: ${{ secrets.PLAYHEADER }}		
-          PLAYBODY: ${{ secrets.PLAYBODY }}
-          HSURL: ${{ secrets.HSURL }}		
-          HSHEADER: ${{ secrets.HSHEADER }}
-          HSBODY: ${{ secrets.HSBODY }}				
+          node huoshan.js			
