@@ -1,12 +1,11 @@
-name: huoshan
+name: 小乐
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,30 * * * *'
+     - cron: '0 0-15 * * *'
   watch:
     types: started
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,24 +16,30 @@ jobs:
         playbody: ${{ secrets.playbody }}
         hsurl: ${{ secrets.hsurl }}		
         hsheader: ${{ secrets.hsheader }}
-        hsbody: ${{ secrets.hsbody }}	
-
+        hsbody: ${{ secrets.hsbody }}		
+        
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
         run: |
-          git clone https://github.com/liuqitoday/QuantumultX.git ~/yangmao
-
+          git clone https://github.com/liuqitoday/QuantumultX.git ~/QuantumultX
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-
       - name: npm install
         run: |
-          cd ~/yangmao
+          cd ~/QuantumultX
           npm install
-
-      - name: '运行 【抖音火山极速版】'
+      - name: '运行 【抖音火山版】'
         run: |
-          node ~/yangmao/task/huoshan.js 
+          cd ~/QuantumultX
+          node task/huoshan.js
+        env:
+          
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
