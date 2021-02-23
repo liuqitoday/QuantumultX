@@ -3,7 +3,7 @@ name: 抖音火山版
 on:
   workflow_dispatch:
   schedule:
-     - cron: '0 0-15 * * *'
+     - cron: '*/20 6-23 * * *'
   watch:
     types: started
 jobs:
@@ -37,14 +37,14 @@ jobs:
           cd ~/QuantumultX
           npm install
       - name: '运行 【抖音火山版】'
-        if: env.playbody
+        if: env.PLAYBODY
         run: |
           cd ~/QuantumultX
           node task/huoshan.js  
         env:
           HSURL: ${{ secrets.HSURL }}
           HSHEADER: ${{ secrets.HSHEADER }}
-          hsbody: ${{ secrets.HSBODY }}
-          playurl: ${{ secrets.PLAYURL }}
-          playheader: ${{ secrets.PLAYHEADER }}
-          playbody: ${{ secrets.PLAYBODY }} 
+          HSBODY: ${{ secrets.HSBODY }}
+          PLAYURL: ${{ secrets.PLAYURL }}
+          PLAYHEADER: ${{ secrets.PLAYHEADER }}
+          PLAYBODY: ${{ secrets.PLAYBODY }} 
