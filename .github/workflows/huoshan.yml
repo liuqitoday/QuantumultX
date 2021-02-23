@@ -51,4 +51,4 @@ jobs:
       - name: '运行 【抖音火山版】'
         if: env.HSHEADER
         run: |
-          node /home/runner/work/QuantumultX/task/huoshan.js
+          node task/huoshan.js
