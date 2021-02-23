@@ -33,12 +33,12 @@ jobs:
         with:
           node-version: 12.x
       - name: npm install
-        if: env.PLAYBODY
+        if: env.playbody
         run: |
           cd ~/QuantumultX
           npm install
       - name: '运行 【抖音火山版】'
-        if: env.PLAYBODY
+        if: env.playbody
         run: |
           cd ~/QuantumultX
           node task/huoshan.js
