@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        PLAYURL: ${{ secrets.PLAYURL }}
-        PLAYHEADER: ${{ secrets.PLAYHEADER }}		
-        PLAYBODY: ${{ secrets.PLAYBODY }}
-        HSURL: ${{ secrets.HSURL }}		
-        HSHEADER: ${{ secrets.HSHEADER }}
-        HSBODY: ${{ secrets.HSBODY }}		
+        playurl: ${{ secrets.PLAYURL }}
+        playheader: ${{ secrets.PLAYHEADER }}		
+        playbody: ${{ secrets.PLAYBODY }}
+        hsurl: ${{ secrets.HSURL }}		
+        hsheader: ${{ secrets.HSHEADER }}
+        hsbody: ${{ secrets.HSBODY }}		
         
     steps:
       - name: Checkout
