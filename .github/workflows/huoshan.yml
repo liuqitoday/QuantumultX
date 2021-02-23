@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-      URL: "https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/jrtt.js"
       RUNFILE: "huoshan.js"
       HSURL: ${{ secrets.HSURL }}
       HSHEADER: ${{ secrets.HSHEADER }}
@@ -52,4 +51,4 @@ jobs:
       - name: '运行 【抖音火山版】'
         if: env.HSHEADER
         run: |
-          node Task/huoshan.js
+          node /home/runner/work/QuantumultX/task/huoshan.js
