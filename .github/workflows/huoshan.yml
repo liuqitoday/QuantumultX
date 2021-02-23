@@ -42,8 +42,8 @@ jobs:
           cd ~/QuantumultX
           node task/huoshan.js  
         env:
-          hsurl: ${{ secrets.HSURL }}
-          hsheader: ${{ secrets.HSHEADER }}
+          HSURL: ${{ secrets.HSURL }}
+          HSHEADER: ${{ secrets.HSHEADER }}
           hsbody: ${{ secrets.HSBODY }}
           playurl: ${{ secrets.PLAYURL }}
           playheader: ${{ secrets.PLAYHEADER }}
