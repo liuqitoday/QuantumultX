@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        playurl: ${{ secrets.PLAYURL }}
-        playheader: ${{ secrets.PLAYHEADER }}		
-        playbody: ${{ secrets.PLAYBODY }}
-        hsurl: ${{ secrets.HSURL }}		
-        hsheader: ${{ secrets.HSHEADER }}
-        hsbody: ${{ secrets.HSBODY }}		
+        PLAYURL: ${{ secrets.PLAYURL }}
+        PLAYHEADER: ${{ secrets.PLAYHEADER }}		
+        PLAYBODY: ${{ secrets.PLAYBODY }}
+        HSURL: ${{ secrets.HSURL }}		
+        HSHEADER: ${{ secrets.HSHEADER }}
+        HSBODY: ${{ secrets.HSBODY }}		
         
     steps:
       - name: Checkout
@@ -35,7 +35,6 @@ jobs:
           cd ~/QuantumultX/task
           node huoshan.js
         env:
-          
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
@@ -43,3 +42,9 @@ jobs:
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          PLAYURL: ${{ secrets.PLAYURL }}
+          PLAYHEADER: ${{ secrets.PLAYHEADER }}		
+          PLAYBODY: ${{ secrets.PLAYBODY }}
+          HSURL: ${{ secrets.HSURL }}		
+          HSHEADER: ${{ secrets.HSHEADER }}
+          HSBODY: ${{ secrets.HSBODY }}				
