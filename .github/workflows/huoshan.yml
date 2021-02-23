@@ -32,8 +32,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: npm install
-        if: env.playbody
+      - name: npm install    
         run: |
           cd ~/QuantumultX
           npm install
@@ -41,4 +40,11 @@ jobs:
         if: env.playbody
         run: |
           cd ~/QuantumultX
-          node task/huoshan.js
+          node task/huoshan.js  
+        env:
+          hsurl: ${{ secrets.HSURL }}
+          hsheader: ${{ secrets.HSHEADER }}
+          hsbody: ${{ secrets.HSBODY }}
+          playurl: ${{ secrets.PLAYURL }}
+          playheader: ${{ secrets.PLAYHEADER }}
+          playbody: ${{ secrets.PLAYBODY }} 
