@@ -1,0 +1,33 @@
+name: huoshan
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0,30 * * * *'
+  watch:
+    types: started
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        playurl: ${{ secrets.playurl }}
+        playheader: ${{ secrets.playheader }}		
+        playbody: ${{ secrets.playbody }}
+        hsurl: ${{ secrets.hsurl }}		
+        hsheader: ${{ secrets.hsheader }}
+        hsbody: ${{ secrets.hsbody }}	
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: '运行 【抖音火山极速版】'
+        run: |
+          node ./task/huoshan.js 
