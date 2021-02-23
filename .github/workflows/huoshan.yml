@@ -28,12 +28,12 @@ jobs:
           node-version: 12.x
       - name: npm install
         run: |
-          cd ~/QuantumultX
+          cd ~/QuantumultX/task
           npm install
       - name: '运行 【抖音火山版】'
         run: |
-          cd ~/QuantumultX
-          node task/huoshan.js
+          cd ~/QuantumultX/task
+          node huoshan.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
