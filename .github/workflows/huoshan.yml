@@ -35,7 +35,7 @@ jobs:
       - name: npm install
         if: env.PLAYBODY
         run: |
-          cd ~/JavaScript
+          cd ~/QuantumultX
           npm install
       - name: '运行 【抖音火山版】'
         if: env.PLAYBODY
