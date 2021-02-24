@@ -129,11 +129,11 @@ if ($.isNode()) {
     }
     ;
     console.log(`应用变量hsurl` + hsurl)
-    console.log(`环境变量hsheader` + hsheader)
-    console.log(`环境变量hsbody` + hsbody)
-    console.log(`环境变量playurl` + playurl)
-    console.log(`环境变量playheader` + playheader)
-    console.log(`环境变量playbody` + playbody)
+    console.log(`应用变量hsheader` + hsheader)
+    console.log(`应用变量hsbody` + hsbody)
+    console.log(`应用变量playurl` + playurl)
+    console.log(`应用变量playheader` + playheader)
+    console.log(`应用变量playbody` + playbody)
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
 } else {
@@ -154,40 +154,55 @@ if ($.isNode()) {
     }
 }
 !(async () => {
-    if (!hsheaderArr[0] && !hsbodyArr[0] && !hsurlArr[0]) {
-        console.log(hsheaderArr)
-        console.log(hsbodyArr)
-        console.log(hsurlArr)
-        $.msg($.name, '【提示】请先获取抖音火山版一cookie')
-        return;
-    }
-    console.log(`------------- 共${hsheaderArr.length}个账号----------------\n`)
-    for (let i = 0; i < hsheaderArr.length; i++) {
-        if (hsheaderArr[i]) {
-            message = ''
-            note = ''
-            hsurl = hsurlArr[i];
-            hsheader = hsheaderArr[i];
-            hsbody = hsbodyArr[i];
-            playurl = playurlArr[i];
-            playheader = playheaderArr[i];
-            playbody = playbodyArr[i];
-            $.index = i + 1;
-            console.log(`\n开始【抖音火山版${$.index}】`)
-            //await ck()
-            await app_alert_check()
-            await device_register()
-            await userinfo()
-            await gettoken()
-            await sign_in()
-            //await ad()
-            await hotsoonfeed()
-            await control()
-            await lottery_main()
-            await lottery()
-            await showmsg()
-        }
-    }
+    // if (!hsheaderArr[0] && !hsbodyArr[0] && !hsurlArr[0]) {
+    //     console.log(hsheaderArr)
+    //     console.log(hsbodyArr)
+    //     console.log(hsurlArr)
+    //     $.msg($.name, '【提示】请先获取抖音火山版一cookie')
+    //     return;
+    // }
+    // console.log(`------------- 共${hsheaderArr.length}个账号----------------\n`)
+    // for (let i = 0; i < hsheaderArr.length; i++) {
+    //     if (hsheaderArr[i]) {
+    //         message = ''
+    //         note = ''
+    //         hsurl = hsurlArr[i];
+    //         hsheader = hsheaderArr[i];
+    //         hsbody = hsbodyArr[i];
+    //         playurl = playurlArr[i];
+    //         playheader = playheaderArr[i];
+    //         playbody = playbodyArr[i];
+    //         $.index = i + 1;
+    //         console.log(`\n开始【抖音火山版${$.index}】`)
+    //         //await ck()
+    //         await app_alert_check()
+    //         await device_register()
+    //         await userinfo()
+    //         await gettoken()
+    //         await sign_in()
+    //         //await ad()
+    //         await hotsoonfeed()
+    //         await control()
+    //         await lottery_main()
+    //         await lottery()
+    //         await showmsg()
+    //     }
+    // }
+    message = ''
+    note = ''
+    console.log(`\n开始【抖音火山版】`)
+    //await ck()
+    await app_alert_check()
+    await device_register()
+    await userinfo()
+    await gettoken()
+    await sign_in()
+    //await ad()
+    await hotsoonfeed()
+    await control()
+    await lottery_main()
+    await lottery()
+    await showmsg()
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
