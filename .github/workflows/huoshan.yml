@@ -3,48 +3,51 @@ name: 抖音火山版
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/20 6-23 * * *'
+    - cron: '*/5 22,23,0-15 * * *'
   watch:
     types: started
+  repository_dispatch:
+    types: huoshan
 jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    env:
-      hsurl: ${{ secrets.HSURL }}
-      hsheader: ${{ secrets.HSHEADER }}
-      hsbody: ${{ secrets.HSBODY }}
-      playurl: ${{ secrets.PLAYURL }}
-      playheader: ${{ secrets.PLAYHEADER }}
-      playbody: ${{ secrets.PLAYBODY }} 
-      PUSH_KEY: ${{ secrets.PUSH_KEY }}
-      BARK_PUSH: ${{ secrets.BARK_PUSH }}
-      TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-      TG_USER_ID: ${{ secrets.TG_USER_ID }}
-      BARK_SOUND: ${{ secrets.BARK_SOUND }}
-      DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-      DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/liuqitoday/QuantumultX.git ~/QuantumultX
-      - name: Use Node.js 12.x
+        uses: actions/checkout@v2
+        with:
+          repository: xuxiaobo4510/APPSIGN
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
-      - name: npm install    
+          node-version: ${{ matrix.node-version }}
+      - name: Cache node_modules
+        uses: actions/cache@v2 # 使用 GitHub 官方缓存 Action。
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
+      - name: npm install
         run: |
-          cd ~/QuantumultX
           npm install
       - name: '运行 【抖音火山版】'
-        if: env.PLAYBODY
+        if: env.HSHEADER
         run: |
-          cd ~/QuantumultX
-          node task/huoshan.js  
+          node task/huoshan.js
         env:
-          HSURL: ${{ secrets.HSURL }}
-          HSHEADER: ${{ secrets.HSHEADER }}
-          HSBODY: ${{ secrets.HSBODY }}
-          PLAYURL: ${{ secrets.PLAYURL }}
-          PLAYHEADER: ${{ secrets.PLAYHEADER }}
-          PLAYBODY: ${{ secrets.PLAYBODY }} 
+          HSHEADER: ${{ secrets. HSHEADER }}
+          HSBODY: ${{ secrets. HSBODY }}
+          HSURL: ${{ secrets. HSURL }}
+          PLAYBODY: ${{ secrets. PLAYBODY }}
+          PLAYHEADER: ${{ secrets. PLAYHEADER }}
+          PLAYURL: ${{ secrets. PLAYURL }}
+          JD_DEBUG: ${{ secrets.JD_DEBUG }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
