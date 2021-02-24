@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: xuxiaobo4510/APPSIGN
+          repository: liuqitoday/QuantumultX
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -30,6 +30,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
         run: |
+          cd task
           npm install
       - name: '运行 【抖音火山版】'
         if: env.HSHEADER
@@ -42,7 +43,6 @@ jobs:
           PLAYBODY: ${{ secrets. PLAYBODY }}
           PLAYHEADER: ${{ secrets. PLAYHEADER }}
           PLAYURL: ${{ secrets. PLAYURL }}
-          JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
