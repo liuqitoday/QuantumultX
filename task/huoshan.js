@@ -123,7 +123,7 @@ if (process.env.PLAYURL && process.env.PLAYURL.indexOf('#') > -1) {
   } else {
    playbody = process.env.PLAYBODY.split()
   };
-  
+	
  //自定义部分
 
 if (COOKIE.hsheaderVal) {
@@ -138,7 +138,7 @@ if (COOKIE.hsheaderVal) {
 }
 
 //自定义部分结束
-  
+	
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
  } else {
@@ -150,7 +150,7 @@ if (COOKIE.hsheaderVal) {
     playbodyArr.push($.getdata('playbody'))
     let hscount = ($.getval('hscount') || '1');
   for (let i = 2; i <= hscount; i++) {
-  hsurlArr.push($.getdata(`hsurl${i}`))
+	hsurlArr.push($.getdata(`hsurl${i}`))
     hsheaderArr.push($.getdata(`hsheader${i}`))
     hsbodyArr.push($.getdata(`hsbody${i}`))
     playurlArr.push($.getdata(`playurl${i}`))
@@ -200,15 +200,15 @@ if($request&&$request.url.indexOf("task_done")>=0) {
    const hsurl = $request.url.split('?')[1]
    if(hsurl)     $.setdata(hsurl,`hsurl${status}`)
    $.log(`[${zhiyi}] 获取hsurl请求: 成功,hsurl: ${hsurl}`)
-   $.msg(`hsurl${status}: 成功�`, ``)
+   $.msg(`hsurl${status}: 成功🎉`, ``)
    const hsheader = JSON.stringify($request.headers)+''
     if(hsheader)    $.setdata(hsheader,`hsheader${status}`)
     $.log(`[${zhiyi}] 获取hsheader请求: 成功,hsheader: ${hsheader}`)
-    $.msg(`hsheader${status}: 成功�`, ``)
+    $.msg(`hsheader${status}: 成功🎉`, ``)
    const hsbody = $request.body
     if(hsbody)    $.setdata(hsbody,`hsbody${status}`)
     $.log(`[${zhiyi}] 获取hsbody请求: 成功,hsbody: ${hsbody}`)
-    $.msg(`hsbody${status}: 成功�`, ``)
+    $.msg(`hsbody${status}: 成功🎉`, ``)
 }
 
 
@@ -216,16 +216,16 @@ if($request&&$request.url.indexOf("reaction/_play")>=0) {
    const playurl = $request.url
    if(playurl)     $.setdata(playurl,`playurl${status}`)
    $.log(`[${zhiyi}] 获取playurl请求: 成功,playurl: ${playurl}`)
-   $.msg(`playurl${status}: 成功�`, ``)
+   $.msg(`playurl${status}: 成功🎉`, ``)
    const playheader =JSON.stringify($request.headers)+''
     if(playheader)    
 $.setdata(playheader,`playheader${status}`)
     $.log(`[${zhiyi}] 获取playheader请求: 成功,playheader: ${playheader}`)
-    $.msg(`playheader${status}: 成功�`, ``)
+    $.msg(`playheader${status}: 成功🎉`, ``)
    const playbody = $request.body
     if(playbody)    $.setdata(playbody,`playbody${status}`)
     $.log(`[${zhiyi}] 获取playbody请求: 成功,playbody: ${playbody}`)
-    $.msg(`playbody${status}: 成功�`, ``)
+    $.msg(`playbody${status}: 成功🎉`, ``)
 }
 }
 //control
@@ -250,7 +250,7 @@ for(let i = 0;i <= 4;i++){
 //app_alert_check
 async function app_alert_check(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
 let iid = hsurl.match(/iid=\d+/)
 let idfa = hsurl.match(/idfa=\d+-\d+-\w+-\w+-\w+/)
 let vid = hsurl.match(/vid=\w+-\w+-\w+-\w+-\w+/)
@@ -261,15 +261,15 @@ let aid = hsurl.match(/aid=\d+/)
 let check_url = 'https://ichannel.snssdk.com/service/2/app_alert_check/?'+iid+'&ac=WIFI&timezone=8&app_name=live_stream&channel=App%20Store&device_platform=iphone&'+idfa+'&'+vid+'&is_upgrade_user=0&app_verison_minor=10080507&version_code=10.8.5&'+device_id+'&os_version=13.3&'+aid+'&'+mcc_mnc
  return new Promise((resolve) => {
     let app_alert_check_url = {
-      url: check_url,
+   		url: check_url,
         headers: JSON.parse(hsheader)
-      }
+    	}
    $.get(app_alert_check_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
-        if(logs)$.log('�模拟启动 '+data)  
-        message += '�模拟启动 �'+result.message
-        console.log('�模拟启动: '+result.message)
+        if(logs)$.log('🔔模拟启动 '+data)  
+        message += '🔔模拟启动 🎈'+result.message
+        console.log('🔔模拟启动: '+result.message)
         /*if(result.data.is_activated == 1){
         console.log('当前状态:活跃\n')
         message += '当前状态:活跃\n'
@@ -285,20 +285,20 @@ let check_url = 'https://ichannel.snssdk.com/service/2/app_alert_check/?'+iid+'&
 //false no function
 async function device_register(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let device_register_url = {
-      url: `https://log-lq.snssdk.com/service/2/device_register/?tt_data=a&${hsurl}`,
+   		url: `https://log-lq.snssdk.com/service/2/device_register/?tt_data=a&${hsurl}`,
         headers: JSON.parse(hsheader),
         //body: `__hideErrorToast=1&task_name=check_in&token=${signtoken}`
-      }
+    	}
    $.post(device_register_url,async(error, response, data) =>{
     try{
         //const result = JSON.parse(data)
         if(logs)$.log(data)
-        message += '�服务注册 '
-        console.log('�'+'注册成功\n')
-        message += '�'+'注册成功\n'
+        message += '🔔服务注册 '
+        console.log('🎈'+'注册成功\n')
+        message += '🎈'+'注册成功\n'
         }catch(e) {
           $.logErr(e, response);
       } finally {
@@ -310,24 +310,24 @@ let new_time = Math.round(new Date().getTime()/1000).toString();
 //userinfo
 async function userinfo(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let userinfo_url = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/user_flame_info/?${hsurl}`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/user_flame_info/?${hsurl}`,
         headers: JSON.parse(hsheader)
-      }
+    	}
    $.get(userinfo_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs) $.log(data)
-        message += '�用户信息 '
+        message += '🔔用户信息 '
         if(result.status_code == 0){
         console.log('现有火苗：'+result.data.flame_left+'可兑换为：'+((result.data.flame_left/30000).toFixed(1))+'元 现有余额：'+result.data.can_with_draw_money+'元')
         console.log('今日领取火苗'+result.data.td_flame_count)
         message += '今日领取火苗'+result.data.td_flame_count+' 现有火苗'+result.data.flame_left+' 可兑换为'+((result.data.flame_left/30000).toFixed(1))+'元 现有余额'+result.data.can_with_draw_money+'元\n'
         }else{
-        console.log('�我也不知道\n')
-        message += '�我也不知道\n'
+        console.log('👀我也不知道\n')
+        message += '👀我也不知道\n'
         }
         }catch(e) {
           $.logErr(e, response);
@@ -340,31 +340,31 @@ let new_time = Math.round(new Date().getTime()/1000).toString();
 //gettoken
 async function gettoken(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let gettoken_url = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/janus/flame/management/panel/?${hsurl}`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/janus/flame/management/panel/?${hsurl}`,
         headers: JSON.parse(hsheader)
-      }
+    	}
    $.get(gettoken_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
-        message += '�获取token '
+        message += '🔔获取token '
         if(result.status_code == 0){
         var ads = result.data.task_info.data.task_list.find(item => item.task_name === 'ad');
         var sign = result.data.task_info.data.task_list.find(item => item.task_name === 'check_in')
-        message += '�获取token成功\n'
+        message += '🎈获取token成功\n'
         if(ads){
         adtoken = ads.ad_task.token
-        console.log('�'+'获取成功，广告token='+adtoken)
+        console.log('🎈'+'获取成功，广告token='+adtoken)
         await ad();
         }
         signtoken = sign.check_in_task.token
-        console.log('�'+'获取成功，签到token='+signtoken)
+        console.log('🎈'+'获取成功，签到token='+signtoken)
         }else{
-        console.log('�我也不知道\n')
-        message += '�我也不知道\n'
+        console.log('👀我也不知道\n')
+        message += '👀我也不知道\n'
         }
         }catch(e) {
           $.logErr(e, response);
@@ -377,24 +377,24 @@ let new_time = Math.round(new Date().getTime()/1000).toString();
 //sign_in
 async function sign_in(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let sign_inurl = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_system/task_done/?${hsurl}`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_system/task_done/?${hsurl}`,
         headers: JSON.parse(hsheader),
         body: `__hideErrorToast=1&task_name=check_in&token=${signtoken}`
-      }
+    	}
    $.post(sign_inurl,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
-        message += '�每日签到 '
+        message += '🔔每日签到 '
         if(result.status_code == 0){
-        console.log('�'+'签到成功，获得'+result.data.task_done_award.flame_amount+'\n')
-        message += '�'+'签到成功，获得'+result.data.task_done_award.flame_amount+'\n'
+        console.log('🎈'+'签到成功，获得'+result.data.task_done_award.flame_amount+'\n')
+        message += '🎈'+'签到成功，获得'+result.data.task_done_award.flame_amount+'\n'
         }else{
-        console.log('�'+result.data.prompts+"\n")
-        message += '�'+result.data.prompts+"\n"
+        console.log('👀'+result.data.prompts+"\n")
+        message += '👀'+result.data.prompts+"\n"
         }
         }catch(e) {
           $.logErr(e, response);
@@ -407,24 +407,24 @@ let new_time = Math.round(new Date().getTime()/1000).toString();
 //ad
 async function ad(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let ad_url = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_system/task_done/?${hsurl}`,
-      headers: JSON.parse(hsheader),
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_system/task_done/?${hsurl}`,
+    	headers: JSON.parse(hsheader),
      body: `__hideErrorToast=1&task_name=ad&token=${adtoken}`
-      }
+    	}
    $.post(ad_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
-        message += '�广告赢火苗 '
+        message += '🔔广告赢火苗 '
         if(result.status_code == 0){
-        console.log('�成功，获得'+result.data.task_done_award.flame_amount+'\n')
-        message += '�成功，获得'+result.data.task_done_award.flame_amount+'\n'
+        console.log('🎈成功，获得'+result.data.task_done_award.flame_amount+'\n')
+        message += '🎈成功，获得'+result.data.task_done_award.flame_amount+'\n'
         }else{
-        console.log('�'+result.data.prompts+'\n')
-        message += '�'+result.data.prompts+'\n'
+        console.log('👀'+result.data.prompts+'\n')
+        message += '👀'+result.data.prompts+'\n'
         }
         }catch(e) {
           $.logErr(e, response);
@@ -443,19 +443,19 @@ async function ck(){
 //hotsoonfeed
 async function hotsoonfeed(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  playheader = playheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	playheader = playheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let hotsoonfeed_url = {
-      url: 'https://api3-normal-c-lf.huoshan.com/hotsoon/feed/?type=video&action=refresh',
-      headers: JSON.parse(playheader),
-      }
+   		url: 'https://api3-normal-c-lf.huoshan.com/hotsoon/feed/?type=video&action=refresh',
+    	headers: JSON.parse(playheader),
+    	}
    $.get(hotsoonfeed_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
         if(result.status_code == 0){
-        console.log('�视频列表获取成功！即将开始播放前5个'+'\n')
-        //message += '�视频列表获取成功！即将开始播放前2个'+'\n'
+        console.log('🎈视频列表获取成功！即将开始播放前5个'+'\n')
+        //message += '🎈视频列表获取成功！即将开始播放前2个'+'\n'
         let item = data.match(/692\d{16}/g)
         item_id = item.distinct();
 }
@@ -470,12 +470,12 @@ let new_time = Math.round(new Date().getTime()/1000).toString();
 //play_video
 async function play_video(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  playheader = playheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	playheader = playheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
 let newplaybody = playbody.replace(/\d{19}/,`${item_id_inv}`)
  return new Promise((resolve) => {
     let play_video_url = {
      url: playurl,
-      headers: JSON.parse(playheader),  
+    	headers: JSON.parse(playheader), 	
      body: newplaybody
 }
    $.post(play_video_url,async(error, response, data) =>{
@@ -484,10 +484,10 @@ let newplaybody = playbody.replace(/\d{19}/,`${item_id_inv}`)
         if(logs)$.log(data)
         //await sleep(30000);
         if(result.status_code == 0){
-        console.log('�视频播放成功！play_count=：'+result.data.play_count)
+        console.log('🎈视频播放成功！play_count=：'+result.data.play_count)
         no = no + 1;
         await video_rewards()
-        //message = `�视频播放成功${no}次，获取奖励${no}次\n`
+        //message = `🎈视频播放成功${no}次，获取奖励${no}次\n`
         }else{
         console.log('视频播放失败'+result.extra.details+'\n')
 }
@@ -502,21 +502,21 @@ let newplaybody = playbody.replace(/\d{19}/,`${item_id_inv}`)
 
 //video_rewards
 async function video_rewards(){
-  let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	let new_time = Math.round(new Date().getTime()/1000).toString();
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let video_rewards_url = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_done/?${hsurl}`,
-      headers: JSON.parse(hsheader),
-      body: hsbody
-      }
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_done/?${hsurl}`,
+    	headers: JSON.parse(hsheader),
+    	body: hsbody
+    	}
    $.post(video_rewards_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
         if(result.status_code == 0){
-      let token = result.data.next_token.match(/WJ.*?(?==)/)+''.replace("%3D","=")
-      let newhsbody = hsbody.replace(/WJ.*?(?==)/,`${token}`)
+	    let token = result.data.next_token.match(/WJ.*?(?==)/)+''.replace("%3D","=")
+	    let newhsbody = hsbody.replace(/WJ.*?(?==)/,`${token}`)
          let _hsbody = newhsbody.replace("%3D","=")
          hsbody = _hsbody
          $.setdata(_hsbody,`hsbody${status}`)
@@ -524,12 +524,12 @@ async function video_rewards(){
          $.log(token)
          $.log(_hsbody)
         let coins = result.data.flame_amount
-        console.log(`�第${no}次获得火苗成功：`+coins+'\n')
+        console.log(`🎈第${no}次获得火苗成功：`+coins+'\n')
         sum = sum + coins
-        note = `�看视频奖励 视频播放成功${no}次，获取奖励${no}次,共获得火苗成功：${sum}\n`
+        note = `🔔看视频奖励 视频播放成功${no}次，获取奖励${no}次,共获得火苗成功：${sum}\n`
         }else{
-        console.log('�'+'我也不知道\n')
-        //message += '�'+"我也不知道\n"
+        console.log('👀'+'我也不知道\n')
+        //message += '👀'+"我也不知道\n"
         }
         }catch(e) {
           $.logErr(e, response);
@@ -542,25 +542,25 @@ async function video_rewards(){
 //lottery_main
 async function lottery_main(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let lottery_main_url = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/commerce/lottery/main/?${hsurl}$activity_id=1`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/commerce/lottery/main/?${hsurl}$activity_id=1`,
         headers: JSON.parse(hsheader),
-      }
+    	}
    $.get(lottery_main_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
         if(result.status_code == 0){
-        console.log('�'+'加载转盘成功\n')
+        console.log('🎈'+'加载转盘成功\n')
         var task = result.data.tasks.find(item => item.task_id === 2);
         console.log('增加抽奖次数'+task.task_current+'/'+task.task_total+'\n')
         if(task.task_current < task.task_total){
         add_lottery_count = 1;
 }
         }else{
-        console.log('�'+"我也不知道\n")
+        console.log('👀'+"我也不知道\n")
         }
         }catch(e) {
           $.logErr(e, response);
@@ -573,20 +573,20 @@ let new_time = Math.round(new Date().getTime()/1000).toString();
 //lottery
 async function lottery(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let lottery_url = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/commerce/lottery/?${hsurl}$activity_id=1`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/commerce/lottery/?${hsurl}$activity_id=1`,
         headers: JSON.parse(hsheader),
-      }
+    	}
    $.get(lottery_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs) $.log(data)
         if(result.data.gift){
-        message += '�抽奖ing'
-        console.log('�'+'抽奖成功'+result.data.gift.name+'\n')
-        message += '�'+'抽奖成功'+result.data.gift.name+'\n'
+        message += '🔔抽奖ing'
+        console.log('🎈'+'抽奖成功'+result.data.gift.name+'\n')
+        message += '🎈'+'抽奖成功'+result.data.gift.name+'\n'
         if(result.data.token){
         if(result.data.button.title.indexOf('看视频领取奖励')){
         console.log('正在领取奖励...\n')
@@ -619,26 +619,26 @@ let new_time = Math.round(new Date().getTime()/1000).toString();
   }
 //add_lottery
 async function add_lottery(){
-  let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	let new_time = Math.round(new Date().getTime()/1000).toString();
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let add_lottery_url = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/commerce/task/ack/?${hsurl}`,
-      headers: JSON.parse(hsheader),
-      body: `task_done_cnt=1&task_id=2`
-      }
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/commerce/task/ack/?${hsurl}`,
+    	headers: JSON.parse(hsheader),
+    	body: `task_done_cnt=1&task_id=2`
+    	}
    $.post(add_lottery_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
         if(result.status_code == 0){
-     console.log('增加抽奖次数成功,再次请求抽奖\n')
+	   console.log('增加抽奖次数成功,再次请求抽奖\n')
         if(add_lottery_count == 1){
         await lottery()
         }
         }else{
-        console.log('�'+'我也不知道\n')
-        //message += '�'+"我也不知道\n"
+        console.log('👀'+'我也不知道\n')
+        //message += '👀'+"我也不知道\n"
         }
         }catch(e) {
           $.logErr(e, response);
@@ -650,24 +650,24 @@ async function add_lottery(){
 }
 //task_ack
 async function task_ack(){
-  let new_time = Math.round(new Date().getTime()/1000).toString();
-  hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	let new_time = Math.round(new Date().getTime()/1000).toString();
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let task_ack_url = {
-      url: `https://api3-normal-c-lq.huoshan.com/hotsoon/commerce/task/ack/?${hsurl}`,
-      headers: JSON.parse(hsheader),
-      body: `task_done_cnt=1&task_id=1002&token=${double_token}`
-      }
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/commerce/task/ack/?${hsurl}`,
+    	headers: JSON.parse(hsheader),
+    	body: `task_done_cnt=1&task_id=1002&token=${double_token}`
+    	}
    $.post(task_ack_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
         if(result.status_code == 0){
-     console.log('获取奖励成功'+result.data.name)
+	   console.log('获取奖励成功'+result.data.name)
         //message += '获取奖励成功'+result.data.name
         }else{
-        console.log('�'+'我也不知道\n')
-        //message += '�'+"我也不知道\n"
+        console.log('👀'+'我也不知道\n')
+        //message += '👀'+"我也不知道\n"
         }
         }catch(e) {
           $.logErr(e, response);
@@ -679,7 +679,7 @@ async function task_ack(){
 }
 //sleep
 function sleep(time){
-   return new Promise((resolve) => setTimeout(resolve,time));
+	 return new Promise((resolve) => setTimeout(resolve,time));
 }
 //reduce
 Array.prototype.distinct = function (){
