@@ -70,7 +70,7 @@ if ($.isNode()) {
         hsurl = process.env.HSURL.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        hsurl = process.env.HSURL.split()
+        hsurl = process.env.HSURL
     };
     if (process.env.HSHEADER && process.env.HSHEADER.indexOf('#') > -1) {
         hsheader = process.env.HSHEADER.split('#');
@@ -80,7 +80,7 @@ if ($.isNode()) {
         hsheader = process.env.HSHEADER.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        hsheader = process.env.HSHEADER.split()
+        hsheader = process.env.HSHEADER
     };
     if (process.env.HSBODY && process.env.HSBODY.indexOf('#') > -1) {
         hsbody = process.env.HSBODY.split('#');
@@ -90,7 +90,7 @@ if ($.isNode()) {
         hsbody = process.env.HSBODY.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        hsbody = process.env.HSBODY.split()
+        hsbody = process.env.HSBODY
     };
     if (process.env.PLAYURL && process.env.PLAYURL.indexOf('#') > -1) {
         playurl = process.env.PLAYURL.split('#');
@@ -100,7 +100,7 @@ if ($.isNode()) {
         playurl = process.env.PLAYURL.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        playurl = process.env.PLAYURL.split()
+        playurl = process.env.PLAYURL
     };
     if (process.env.PLAYHEADER && process.env.PLAYHEADER.indexOf('#') > -1) {
         playheader = process.env.PLAYHEADER.split('#');
@@ -110,7 +110,7 @@ if ($.isNode()) {
         playheader = process.env.PLAYHEADER.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        playheader = process.env.PLAYHEADER.split()
+        playheader = process.env.PLAYHEADER
     };
     if (process.env.PLAYBODY && process.env.PLAYBODY.indexOf('#') > -1) {
         playbody = process.env.PLAYBODY.split('#');
@@ -120,10 +120,16 @@ if ($.isNode()) {
         playbody = process.env.PLAYBODY.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        playbody = process.env.PLAYBODY.split()
+        playbody = process.env.PLAYBODY
     };
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
+    hsurlArr.push(hsurl)
+    hsheaderArr.push(hsheader)
+    hsbodyArr.push(hsbody)
+    playurlArr.push(playurl)
+    playheaderArr.push(playheader)
+    playbodyArr.push(playbody)
 } else {
     hsurlArr.push($.getdata('hsurl'))
     hsheaderArr.push($.getdata('hsheader'))
