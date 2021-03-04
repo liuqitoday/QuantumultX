@@ -70,7 +70,7 @@ if ($.isNode()) {
         hsurl = process.env.HSURL.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        hsurl = process.env.HSURL
+        hsurl = process.env.HSURL.split()
     };
     if (process.env.HSHEADER && process.env.HSHEADER.indexOf('#') > -1) {
         hsheader = process.env.HSHEADER.split('#');
@@ -80,7 +80,7 @@ if ($.isNode()) {
         hsheader = process.env.HSHEADER.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        hsheader = process.env.HSHEADER
+        hsheader = process.env.HSHEADER.split()
     };
     if (process.env.HSBODY && process.env.HSBODY.indexOf('#') > -1) {
         hsbody = process.env.HSBODY.split('#');
@@ -90,7 +90,7 @@ if ($.isNode()) {
         hsbody = process.env.HSBODY.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        hsbody = process.env.HSBODY
+        hsbody = process.env.HSBODY.split()
     };
     if (process.env.PLAYURL && process.env.PLAYURL.indexOf('#') > -1) {
         playurl = process.env.PLAYURL.split('#');
@@ -100,7 +100,7 @@ if ($.isNode()) {
         playurl = process.env.PLAYURL.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        playurl = process.env.PLAYURL
+        playurl = process.env.PLAYURL.split()
     };
     if (process.env.PLAYHEADER && process.env.PLAYHEADER.indexOf('#') > -1) {
         playheader = process.env.PLAYHEADER.split('#');
@@ -110,7 +110,7 @@ if ($.isNode()) {
         playheader = process.env.PLAYHEADER.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        playheader = process.env.PLAYHEADER
+        playheader = process.env.PLAYHEADER.split()
     };
     if (process.env.PLAYBODY && process.env.PLAYBODY.indexOf('#') > -1) {
         playbody = process.env.PLAYBODY.split('#');
@@ -120,7 +120,7 @@ if ($.isNode()) {
         playbody = process.env.PLAYBODY.split('\n');
         console.log(`您选择的是用换行隔开\n`)
     } else {
-        playbody = process.env.PLAYBODY
+        playbody = process.env.PLAYBODY.split()
     };
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
@@ -142,25 +142,25 @@ if ($.isNode()) {
     }
 }
 !(async () => {
-    // if (!hsheaderArr[0] && !hsbodyArr[0] && !hsurlArr[0]) {
-    //     $.msg($.name, '【提示】请先获取抖音火山版一cookie')
-    //     return;
-    // }
-    // console.log(`------------- 共${hsheaderArr.length}个账号----------------\n`)
-    // for (let i = 0; i < hsheaderArr.length; i++) {
-    //     if (hsheaderArr[i]) {
+    if (!hsheaderArr[0] && !hsbodyArr[0] && !hsurlArr[0]) {
+        $.msg($.name, '【提示】请先获取抖音火山版一cookie')
+        return;
+    }
+    console.log(`------------- 共${hsheaderArr.length}个账号----------------\n`)
+    for (let i = 0; i < hsheaderArr.length; i++) {
+        if (hsheaderArr[i]) {
             message = ''
             note = ''
-            // hsurl = hsurlArr[i];
-            // hsheader = hsheaderArr[i];
-            // hsbody = hsbodyArr[i];
-            // playurl = playurlArr[i];
-            // playheader = playheaderArr[i];
-            // playbody = playbodyArr[i];
-            // $.index = i + 1;
-            // console.log(`\n开始【抖音火山版${$.index}】`)
+            hsurl = hsurlArr[i];
+            hsheader = hsheaderArr[i];
+            hsbody = hsbodyArr[i];
+            playurl = playurlArr[i];
+            playheader = playheaderArr[i];
+            playbody = playbodyArr[i];
+            $.index = i + 1;
+            console.log(`\n开始【抖音火山版${$.index}】`)
             //await ck()
-            await app_alert_check()
+            //await app_alert_check()
             await device_register()
             await userinfo()
             await gettoken()
@@ -171,8 +171,8 @@ if ($.isNode()) {
             await lottery_main()
             await lottery()
             await showmsg()
-    //     }
-    // }
+        }
+    }
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
@@ -223,7 +223,7 @@ async function control(){
         item_id_inv = item_id[i]
         $.log(item_id_inv)
         let x = Math.random()
-        let delay = x > 0.5? x*60000 : (x+0.5)*30000
+        let delay = x > 0.5? x*30000 : (x+0.5)*15000
         console.log('⏰本次延迟'+Math.round(delay/1000)+'秒')
         await sleep(delay)
         await play_video()
@@ -473,6 +473,9 @@ async function play_video(){
                     //message = `🎈视频播放成功${no}次，获取奖励${no}次\n`
                 }else{
                     console.log('视频播放失败'+result.extra.details+'\n')
+                    no = no + 1;
+                    await video_rewards()
+
                 }
             }catch(e) {
                 $.logErr(e, response);
@@ -487,9 +490,10 @@ async function play_video(){
 async function video_rewards(){
     let new_time = Math.round(new Date().getTime()/1000).toString();
     hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+    let url = hsurl.replace(/device_platform=\w+/,'device_platform=android')
     return new Promise((resolve) => {
         let video_rewards_url = {
-            url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_done/?${hsurl}`,
+            url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_done/?${url}`,
             headers: JSON.parse(hsheader),
             body: hsbody
         }
