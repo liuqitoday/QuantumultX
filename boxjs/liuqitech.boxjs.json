@@ -87,6 +87,18 @@
             "repo": "https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/Youth_AutoRead.js",
             "icons": ["https://raw.githubusercontent.com/Orz-3/task/master/youth.png", "https://raw.githubusercontent.com/Orz-3/task/master/youth.png"],
             "script": "https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/Youth_AutoRead.js"
+        },
+        {
+          "id": "maicai_checkin",
+          "name": "美团买菜",
+          "descs_html": [
+            "<h4 align=\"center\">脚本作者@blackmatrix7<a href=\"https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai_checkin.js\">查看脚本</a></h4>"
+          ],
+          "keys": ["meituan_mall_cookie", "meituan_mall_t", "meituan_mall_querystring", "meituan_mall_uuid", "meituan_mall_userid", "meituan_mall_body"],
+          "author": "@blackmatrix7",
+          "repo": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai_checkin.js",
+          "icons": ["https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai.png", "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai.png"],
+          "script": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/meituan/maicai_checkin.js"
         }
     ]
 }
